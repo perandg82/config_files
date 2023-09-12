@@ -1,5 +1,6 @@
 if [ "$TMUX" = "" ]; then tmux; fi
 
+~/bin/config_git_status.sh
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/perg/.zshrc'
 zstyle ':completion:*' special-dirs true
