@@ -1,0 +1,5 @@
+require("perg.plugin_config.gruvbox")
+--require("perg.plugin_config.lualine")
+require("perg.plugin_config.my_nvim-tree")
+require("perg.plugin_config.telescope")
+require("perg.plugin_config.treesitter")
