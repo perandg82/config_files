@@ -1,4 +1,4 @@
-require("perg.plugin_config.tokyonight")
+require("perg.plugin_config.onedark")
 require("perg.plugin_config.lualine")
 require("perg.plugin_config.my_nvim-tree")
 require("perg.plugin_config.telescope")

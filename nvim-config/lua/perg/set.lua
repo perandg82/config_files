@@ -1,7 +1,7 @@
 vim.opt.guicursor = ""
 
-vim.opt.statusline = "%F%m%r%h%w [FORMAT=%{&ff}] [TYPE=%Y] [POS=%04l,%04v][%p%%] [LEN=%L]"
-vim.opt.laststatus = 2
+--vim.opt.statusline = "%F%m%r%h%w [FORMAT=%{&ff}] [TYPE=%Y] [POS=%04l,%04v][%p%%] [LEN=%L]"
+--vim.opt.laststatus = 2
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
