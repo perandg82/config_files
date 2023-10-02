@@ -16,8 +16,12 @@ require('lualine').setup {
 				path = 1,
 			}
 		},
+		lualine_c = { 'hostname' },
 		lualine_z = {
 			{ getWords }
 		},
+	},
+	inactive_sections = {
+		lualine_c = {''},
 	},
 }
