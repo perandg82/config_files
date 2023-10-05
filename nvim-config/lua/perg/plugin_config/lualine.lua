@@ -5,7 +5,7 @@ end
 require('lualine').setup {
 	options = {
 		section_separators = '',
-		component_separators = '',
+		component_separators = '|',
 		icons_enabled = false,
 		theme = 'onedark',
 	},
@@ -16,7 +16,7 @@ require('lualine').setup {
 				path = 1,
 			}
 		},
-		lualine_c = { 'hostname' },
+		lualine_c = {},
 		lualine_z = {
 			{ getWords }
 		},
