@@ -12,11 +12,12 @@ return require('packer').startup(function(use)
   --use 'ellisonleao/gruvbox.nvim'
   --use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
+  use 'christoomey/vim-tmux-navigator'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use {
 	'nvim-lualine/lualine.nvim',
-	requires = { 'nvim-tree-nvim-web-devicons', opt = true },
+	requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   }
   use 'nvim-treesitter/nvim-treesitter'
   use {

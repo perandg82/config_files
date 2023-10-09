@@ -21,6 +21,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 unsetopt beep
 
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+
 # Disable ctrl-s/q
 if [[ -t 0 && $- = *i* ]]
 then
@@ -45,6 +48,7 @@ alias shutdown='echo "Your account is not allowed to run the shutdown command wi
 export MYSSHCONFIG="/home/perg/.ssh/config"
 export MYZSHRC="/home/perg/.zshrc"
 alias ls='ls -lh --color=auto'
+alias tmux='tmux -u'
 # zephyr
 #export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
 export ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk
