@@ -216,7 +216,7 @@ zstyle ':vcs_info:*' enable git
 
 precmd () { vcs_info }
 #PROMPT='%(?..[%?] )%F{5}[%F{2}%m%F{5}|%F{2}%T%F{5}] ${vcs_info_msg_0_}%F{3}%#%f '
-PROMPT='%(?..[%?] )%F{5}[%F{5}%m%F{5}|%F{5}%T%F{5}] ${vcs_info_msg_0_}%F{119}%#%f '
+PROMPT='%(?..[%?] )%F{5}[%F{5}%m%F{5}|%F{5}%T%F{5}] ${vcs_info_msg_0_}%F{213}%#%f '
 
 export RPROMPT='%F{213}%~'
 
