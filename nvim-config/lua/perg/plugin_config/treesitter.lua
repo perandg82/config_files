@@ -10,7 +10,6 @@ require'nvim-treesitter.configs'.setup {
 		"json",
 		"yaml",
 		"bash",
-		"zsh",
 		"dockerfile",
 	},
 	sync_install = false,
