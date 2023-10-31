@@ -38,3 +38,5 @@ map("n", [[<F4>]], [[:tabnew<Cr>]])
 
 map("n", [[<F1>]], [[<Esc>]])
 map("i", [[<F1>]], [[<Esc>]])
+vim.keymap.set({"n", "v", "o"}, "ø", "^")
+vim.keymap.set({"n", "v", "o"}, "æ", "$")

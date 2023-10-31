@@ -93,18 +93,6 @@ fi
 #############
 # FUNCTIONS #
 #############
-export SIGCMD='-s'
-export SM_SIG='960138081'
-function do_alv_build () {
-	west build alv --pristine 
-}
-function do_alv_prog () {
-	west flash --recover && nrfjprog -r ${SIGCMD} ${SM_SIG}
-}
-function do_alv_complete () {
-	do_alv_build && do_alv_prog
-}
-
 function zephyr-addr2line () {
 	if [ $# = 2 ]; then
 		for i in $(ls $1/**/zephyr.elf | rev | cut -d" " -f1 | rev); do aarch64-linux-gnu-addr2line -e $i $2; done
@@ -113,10 +101,6 @@ function zephyr-addr2line () {
 		echo "You gave $#"
 	fi
 }
-function getrec () {
-	rsync -avzP root@mybase:"$1" /home/perg/audiodata/dovreceiver/.
-}
-
 function picocom () {
 	/usr/bin/picocom -b 115200 -g /tmp/picocom-"$1:t".log "$1"
 }
