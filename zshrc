@@ -47,6 +47,7 @@ alias shutdown='echo "Your account is not allowed to run the shutdown command wi
 # End of lines configured by zsh-newuser-install
 export MYSSHCONFIG="/home/perg/.ssh/config"
 export MYZSHRC="/home/perg/.zshrc"
+export MYTMUXCONF="/home/perg/.tmux.conf"
 alias ls='ls -lh --color=auto'
 alias tmux='tmux -u'
 # zephyr

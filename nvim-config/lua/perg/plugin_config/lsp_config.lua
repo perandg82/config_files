@@ -1,5 +1,5 @@
 require("mason").setup()
-local servers = { 
+local servers = {
 	lua_ls = {
 		Lua = {
 			diagnostics = {
@@ -9,7 +9,6 @@ local servers = {
 	},
 	gopls = {},
 	clangd = {},
-	pyre = {},
 }
 
 local on_attach = function(_, _)
