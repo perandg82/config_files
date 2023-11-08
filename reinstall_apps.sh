@@ -28,6 +28,12 @@ sudo snap install --classic cmake
 sudo snap install spotify
 pip3 install --user -U west
 
+#if wayland
+sudo aptitude install wl-clipboard
+#elif [[ X11]]; then
+sudo aptitude install xsel
+
+
 echo "stuff that needs manual handling:"
 echo "pip3 install -r --user ../zephyr/scripts/requirements.txt"
 echo "pip3 install --user -r requirements.txt"
