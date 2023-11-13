@@ -123,6 +123,19 @@ function nrf () {
 	fi
 }
 
+function lilbitprog () {
+	if [ ! -d build ]; then
+		echo "No build folder available"
+	else
+		if [ "$1" = '52' ]; then
+			nrfjprog -f nrf52 --program build/zephyr/zephyr.hex --chiperase --verify && nrfjprog -r
+		elif [ "$1" = '91' ]; then
+			nrfjprog -f nrf91 --program build/zephyr/merged.hex --chiperase --verify && nrfjprog -r
+		else
+			echo "Incorrect usage: lilbitprog [52|91]"
+		fi
+	fi
+}
 
 function osddone () {
 	if (( $# == 0 )) then
