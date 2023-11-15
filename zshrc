@@ -63,33 +63,32 @@ alias find_sr="sudo nmap 10.0.0.0/24 -p 22 --open | grep -i murata -B 5"
 #########################
 # Stuff to do with PATH #
 #########################
+function test_path_and_add ()
+{
+	if [ $# = 1 ]; then
+		if [[ -d $1 ]]; then
+			if [[ ":$PATH:" != *":$1:"* ]]; then
+				path+=("$1")
+			fi
+		fi
+	fi
+}
 
 # Expand $PATH to include ARM embedded toolchain
 export ARMGCC_DIR="/opt/gcc-arm-none-eabi"
 export GNUARMEMB_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi"
-if [ -n "${PATH##*$GNUARMEMB_TOOLCHAIN_PATH}" -a -n "${PATH##*$GNUARMEMB_TOOLCHAIN_PATH:*}" ]; then
-    export PATH=$PATH:$GNUARMEMB_TOOLCHAIN_PATH/bin
-fi
+test_path_and_add ${GNUARMEMB_TOOLCHAIN_PATH}
+test_path_and_add ${ZEPHYR_SDK_INSTALL_DIR}
 export RASPI_TOOLCHAIN_PATH="~/gitstuff/raspi_compile_tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64"
-if [ -d ${RASPI_TOOLCHAIN_PATH} ]; then
-	if [ -n "${PATH##*$RASPI_TOOLCHAIN_PATH}" -a -n "${PATH##*$RASPI_TOOLCHAIN_PATH:*}" ]; then
-		export PATH=$PATH:$RASPI_TOOLCHAIN_PATH/bin
-	fi
-fi
+test_path_and_add ${RASPI_TOOLCHAIN_PATH}
+export PROTOC_INSTALL_DIR="/opt/protoc/bin/"
+test_path_and_add $PROTOC_INSTALL_DIR
 export GNU_INSTALL_ROOT=$GNUARMEMB_TOOLCHAIN_PATH/bin/
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-	PATH="$HOME/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ]; then
-	PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "/opt/eagle" ]; then
-	PATH="/opt/eagle:$PATH"
-fi
-if [ -d "/usr/local/go/bin" ]; then
-	PATH="/usr/local/go/bin:$PATH"
-fi
+test_path_and_add "$HOME/bin"
+test_path_and_add "$HOME/.local/bin"
+test_path_and_add "/opt/eagle"
+test_path_and_add "/usr/local/go/bin"
 
 #############
 # FUNCTIONS #
