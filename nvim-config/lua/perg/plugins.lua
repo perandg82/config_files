@@ -16,6 +16,14 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use {
+  'phaazon/hop.nvim',
+  branch = 'v2', -- optional but strongly recommended
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  end
+  }
+  use {
 	'nvim-lualine/lualine.nvim',
 	requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   }
