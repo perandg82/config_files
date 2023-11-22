@@ -77,10 +77,10 @@ function test_path_and_add ()
 # Expand $PATH to include ARM embedded toolchain
 export ARMGCC_DIR="/opt/gcc-arm-none-eabi"
 export GNUARMEMB_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi"
-test_path_and_add ${GNUARMEMB_TOOLCHAIN_PATH}
-test_path_and_add ${ZEPHYR_SDK_INSTALL_DIR}
+test_path_and_add ${GNUARMEMB_TOOLCHAIN_PATH}/bin
+test_path_and_add ${ZEPHYR_SDK_INSTALL_DIR}/aarch64-zephyr-elf/bin
 export RASPI_TOOLCHAIN_PATH="~/gitstuff/raspi_compile_tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64"
-test_path_and_add ${RASPI_TOOLCHAIN_PATH}
+test_path_and_add ${RASPI_TOOLCHAIN_PATH}/bin
 export PROTOC_INSTALL_DIR="/opt/protoc/bin/"
 test_path_and_add $PROTOC_INSTALL_DIR
 export GNU_INSTALL_ROOT=$GNUARMEMB_TOOLCHAIN_PATH/bin/
