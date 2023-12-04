@@ -25,6 +25,8 @@ map("v", [[<leader>y]], [["+y]])
 map("n", [[<leader>Y]], [["+yg_]])
 map("v", [[<leader>y]], [["+y]])
 map("n", [[<leader>yy]], [["+yy]])
+map("n", [[<leader>yiw]], [["+yiw]])
+map("n", [[<leader>yw]], [["+yw]])
 
 -- Paste from clipboard
 map("n", [[<leader>p]], [["+p]])

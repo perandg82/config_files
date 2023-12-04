@@ -67,6 +67,12 @@ return require('packer').startup(function(use)
 		},
 	},
   }
+  use {
+    'fei6409/log-highlight.nvim',
+    config = function()
+        require('log-highlight').setup {}
+    end,
+  }
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
