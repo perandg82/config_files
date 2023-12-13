@@ -79,6 +79,7 @@ export ARMGCC_DIR="/opt/gcc-arm-none-eabi"
 export GNUARMEMB_TOOLCHAIN_PATH="/opt/gcc-arm-none-eabi"
 test_path_and_add ${GNUARMEMB_TOOLCHAIN_PATH}/bin
 test_path_and_add ${ZEPHYR_SDK_INSTALL_DIR}/aarch64-zephyr-elf/bin
+export AARCH64_TOOLCHAIN="aarch64-zephyr-elf"
 export RASPI_TOOLCHAIN_PATH="~/gitstuff/raspi_compile_tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64"
 test_path_and_add ${RASPI_TOOLCHAIN_PATH}/bin
 export PROTOC_INSTALL_DIR="/opt/protoc/bin/"
@@ -95,12 +96,25 @@ test_path_and_add "/usr/local/go/bin"
 #############
 function zephyr-addr2line () {
 	if [ $# = 2 ]; then
-		for i in $(ls $1/**/zephyr.elf | rev | cut -d" " -f1 | rev); do aarch64-linux-gnu-addr2line -e $i $2; done
+		for i in $(ls $1/**/zephyr.elf | rev | cut -d" " -f1 | rev); do ${AARCH64_TOOLCHAIN}-addr2line -e $i $2; done
 	else
 		echo "Two params needed, build folder and addr"
 		echo "You gave $#"
 	fi
 }
+
+function zephyr-config-lookup () {
+	if [ $# != 1 ]; then
+		echo "One param is needed: config option (case insensitive)"
+		return
+	fi
+	if [ ! -d build ]; then
+		echo "No build folder available"
+		return
+	fi
+	grep -inr $1 build/zephyr/.config
+}
+
 function picocom () {
 	/usr/bin/picocom -b 115200 -g /tmp/picocom-"$1:t".log "$1"
 }
@@ -123,19 +137,29 @@ function nrf () {
 }
 
 function lilbitprog () {
+	sign52=683850517
+	sign91=602005433
 	if [ ! -d build ]; then
 		echo "No build folder available"
 	else
 		if [ "$1" = '52' ]; then
-			nrfjprog -f nrf52 --program build/zephyr/zephyr.hex --chiperase --verify && nrfjprog -r
+			nrfjprog -f nrf52 -s ${sign52} --program build/zephyr/zephyr.hex --chiperase --verify && nrfjprog -s ${sign52} -r
 		elif [ "$1" = '91' ]; then
-			nrfjprog -f nrf91 --program build/zephyr/merged.hex --chiperase --verify && nrfjprog -r
+			nrfjprog -f nrf91 -s ${sign91} --program build/zephyr/merged.hex --chiperase --verify && nrfjprog -s ${sign91} -r
 		else
 			echo "Incorrect usage: lilbitprog [52|91]"
 		fi
 	fi
 }
 
+function rttlog () {
+	if [ ! -d build ]; then
+		echo "No build folder available"
+		return
+	fi
+	RTTAddress=$(cat build/zephyr/zephyr.map | grep '0x.* *_SEGGER_RTT' | sed 's/_SEGGER_RTT//;s/ //g') ;
+	JLinkRTTLogger -Device CORTEX-M4 -If SWD -Speed 4000 -RTTAddress $${RTTAddress} -RTTChannel 0 /tmp/rtt_log
+}
 function osddone () {
 	if (( $# == 0 )) then
 		notify-send -t 10 -i /usr/share/pixmaps/faces/lightning.jpg "USPESIFISERT JOBB" "No e jobben din ferdig";
