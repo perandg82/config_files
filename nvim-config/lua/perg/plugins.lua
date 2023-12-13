@@ -8,6 +8,7 @@ end
 
 
 return require('packer').startup(function(use)
+  use 'lewis6991/gitsigns.nvim'
   use 'wbthomason/packer.nvim'
   --use 'ellisonleao/gruvbox.nvim'
   --use 'folke/tokyonight.nvim'
