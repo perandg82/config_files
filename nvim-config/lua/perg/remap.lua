@@ -18,7 +18,7 @@ map("n", [[N]], [[Nzzzv]])
 -- delete to void buffer, paste from buffer
 map("x", [[<leader>r]], [["_dP]])
 -- replace word under cursor
-map("n", [[<leader>s]], [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- map("n", [[<leader>s]], [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Copy to clipboard
 map("v", [[<leader>y]], [["+y]])
