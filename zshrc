@@ -143,9 +143,9 @@ function lilbitprog () {
 		echo "No build folder available"
 	else
 		if [ "$1" = '52' ]; then
-			nrfjprog -f nrf52 -s ${sign52} --program build/zephyr/zephyr.hex --chiperase --verify && nrfjprog -s ${sign52} -r
+			nrfjprog -f nrf52 -s ${sign52} --program build/zephyr/zephyr.hex --chiperase --verify -r
 		elif [ "$1" = '91' ]; then
-			nrfjprog -f nrf91 -s ${sign91} --program build/zephyr/merged.hex --chiperase --verify && nrfjprog -s ${sign91} -r
+			nrfjprog -f nrf91 -s ${sign91} --program build/zephyr/merged.hex --chiperase --verify -r
 		else
 			echo "Incorrect usage: lilbitprog [52|91]"
 		fi
