@@ -69,10 +69,10 @@ return require('packer').startup(function(use)
 	},
   }
   use {
-    'fei6409/log-highlight.nvim',
+    'numToStr/Comment.nvim',
     config = function()
-        require('log-highlight').setup {}
-    end,
+        require('Comment').setup()
+    end
   }
   -- My plugins here
   -- use 'foo1/bar1.nvim'
