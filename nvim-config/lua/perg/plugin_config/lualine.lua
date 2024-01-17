@@ -17,9 +17,6 @@ require('lualine').setup {
 			}
 		},
 		lualine_c = {},
-		lualine_z = {
-			{ getWords }
-		},
 	},
 	inactive_sections = {
 		lualine_c = {''},
