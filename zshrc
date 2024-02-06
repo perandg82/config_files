@@ -238,7 +238,12 @@ zstyle ':vcs_info:*' enable git
 precmd () { vcs_info }
 #PROMPT='%(?..[%?] )%F{5}[%F{2}%m%F{5}|%F{2}%T%F{5}] ${vcs_info_msg_0_}%F{3}%#%f '
 #PROMPT='%(?..[%?] )%F{189}[%F{189}%m%F{189}|%F{189}%T%F{189}] ${vcs_info_msg_0_}%F{213}%#%f '
-PROMPT='%(?..[%?] )%F{189}[%F{189}%T%F{189}] ${vcs_info_msg_0_}%F{189}%#%f '
-
-export RPROMPT='%F{213}%~'
+if [ "$DISTROBOX_ENTER_PATH" = "" ];
+then  
+	PROMPT='%(?..[%?] )%F{189}[%F{189}%T%F{189}] ${vcs_info_msg_0_}%F{189}%#%f '
+	export RPROMPT='%F{213}%~'
+else
+	PROMPT='%(?..[%?] )%F{2}[%F{2}%m] ${vcs_info_msg_0_}%F{2}%#%f '
+	export RPROMPT='%F{2}%~'
+fi
 
