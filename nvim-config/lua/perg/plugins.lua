@@ -50,7 +50,15 @@ return require('packer').startup(function(use)
   }
   use {
 	  "lukas-reineke/indent-blankline.nvim",
+	  config = function()
 	  require('ibl').setup()
+  end
+  }
+  use {
+	  "b0o/incline.nvim",
+	  config = function()
+	  require("incline").setup()
+  end
   }
   use {
 	  "williamboman/mason.nvim",
