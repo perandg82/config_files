@@ -10,20 +10,10 @@ end
 return require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'wbthomason/packer.nvim'
-  --use 'ellisonleao/gruvbox.nvim'
-  --use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
   use 'christoomey/vim-tmux-navigator'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
-  use {
-	'smoka7/hop.nvim',
-	tag = '*', -- optional but strongly recommended
-	config = function()
-	  -- you can configure Hop the way you like here; see :h hop-config
-	  require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
-	end
-  }
   use {
 	'nvim-lualine/lualine.nvim',
 	requires = { 'nvim-tree/nvim-web-devicons', opt = true },
@@ -47,12 +37,6 @@ return require('packer').startup(function(use)
   use {
 	  'hrsh7th/nvim-cmp',
 	  requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets', },
-  }
-  use {
-	  "lukas-reineke/indent-blankline.nvim",
-	  config = function()
-	  require('ibl').setup()
-  end
   }
   use {
 	  "b0o/incline.nvim",
