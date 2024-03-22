@@ -21,10 +21,10 @@ vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recent fil
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp tags' })
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
+vim.keymap.set('n', '/', function()
 	builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
 		winblend = 10,
-		previewer = false,
+		previewer = true,
 	})
 	end, { desc = '[/] Fuzzily search in current buffer' })
 
