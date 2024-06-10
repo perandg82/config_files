@@ -97,25 +97,65 @@ test_path_and_add "/usr/local/go/bin"
 #############
 # FUNCTIONS #
 #############
+function zephyr-dts-lookup () {
+	if [ $# = 2 ]; then
+		build=$1
+		dts_nr=$2
+	elif [ $# = 1 ]; then
+		build="build"
+		dts_nr=$1
+	else
+		echo "Two params needed, build folder and dts ord number"
+		echo "Build folder can be omitted if it is 'build'"
+		return
+	fi
+
+	dtsfile=$(ls ${build}/zephyr/**/devicetree_generated.h | rev | cut -d" " -f 1 | rev)
+	if [ ! -f $dtsfile ]; then
+		echo "Cannot find dts file:"
+		echo $dtsfile
+		return
+	fi
+	echo $dtsfile
+	header_end=$(grep -n "*/" $dtsfile | head -n1 | cut -d ":" -f1)
+	echo "Grepping first $header_end lines"
+	head -n $header_end $dtsfile | grep $dts_nr
+}
+
 function zephyr-addr2line () {
 	if [ $# = 2 ]; then
-		for i in $(ls $1/**/zephyr.elf | rev | cut -d" " -f1 | rev); do ${AARCH64_TOOLCHAIN}-addr2line -e $i $2; done
+		build=$1
+		addr=$2
+	elif [ $# = 1 ]; then
+		build="build"
+		addr=$1
 	else
-		echo "Two params needed, build folder and addr"
-		echo "You gave $#"
+		echo "Two params needed, build folder and addr in hex"
+		echo "Build folder can be omitted if it is 'build'"
+		return
 	fi
+	for i in $(ls ${build}/**/zephyr.elf | rev | cut -d" " -f1 | rev); do ${AARCH64_TOOLCHAIN}-addr2line -e $i $addr; done
 }
 
 function zephyr-config-lookup () {
-	if [ $# != 1 ]; then
-		echo "One param is needed: config option (case insensitive)"
+	if [ $# = 2 ]; then
+		build=$1
+		config=$2
+	elif [ $# = 1 ]; then
+		build="build"
+		config=$1
+	else
+		echo "Two params needed, build folder and config option (case insensitive)"
+		echo "Build folder can be omitted if it is 'build'"
 		return
 	fi
-	if [ ! -d build ]; then
-		echo "No build folder available"
+
+	configfile=${build}/zephyr/.config
+	if [ ! -f $configfile ]; then
+		echo "File $configfile is not available"
 		return
 	fi
-	grep -inr $1 build/zephyr/.config
+	grep -inr $config $configfile
 }
 
 function picocom () {
