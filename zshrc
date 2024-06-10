@@ -30,6 +30,9 @@ then
     stty -ixon
 fi
 
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
 #setopt inc_append_history
 #setopt share_history
 
@@ -204,7 +207,6 @@ r() {
 ########################
 
 bindkey -v
-bindkey "^R" history-incremental-pattern-search-backward
 bindkey '\e[1~'   beginning-of-line  # Linux console
 bindkey '\e[H'    beginning-of-line  # xterm
 bindkey '\eOH'    beginning-of-line  # gnome-terminal
