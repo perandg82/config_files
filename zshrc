@@ -110,12 +110,12 @@ function zephyr-dts-lookup () {
 		return
 	fi
 
-	dtsfile=$(ls ${build}/zephyr/**/devicetree_generated.h | rev | cut -d" " -f 1 | rev)
-	if [ ! -f $dtsfile ]; then
+	ls ${build}/zephyr/**/devicetree_generated.h
+	if [ ! $? = 0 ]; then
 		echo "Cannot find dts file:"
-		echo $dtsfile
 		return
 	fi
+	dtsfile=$(ls ${build}/zephyr/**/devicetree_generated.h | rev | cut -d" " -f 1 | rev)
 	echo $dtsfile
 	header_end=$(grep -n "*/" $dtsfile | head -n1 | cut -d ":" -f1)
 	echo "Grepping first $header_end lines"
