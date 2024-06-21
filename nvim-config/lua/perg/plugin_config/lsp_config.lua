@@ -19,6 +19,15 @@ local on_attach = function(_, _)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = '[G]oto [I]mplementation' })
 	vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences' })
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+	vim.keymap.set('n', '<leader>cd', function()
+		local config = vim.diagnostic.config
+		local vt = config().virtual_text
+		config {
+			virtual_text = not vt,
+			underline = not vt,
+			signs = not vt,
+		}
+	end, { desc = "toggle diagnostic" })
 end
 
 require("mason-lspconfig").setup({
