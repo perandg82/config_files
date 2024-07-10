@@ -16,9 +16,19 @@ map("n", [[<C-u>]], [[<C-u>zz]])
 map("n", [[n]], [[nzzzv]])
 map("n", [[N]], [[Nzzzv]])
 -- delete to void buffer, paste from buffer
-map("n", [[<leader>rp]], [["_dP]])
+map("n", [[<leader>dp]], [["_diwP]], { desc = '[D]elete to void, [P]aste from buffer' } )
 -- replace word under cursor
--- map("n", [[<leader>s]], [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("n", [[<leader>rw]], [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename [W]ord under cursor' })
+vim.keymap.set('n', '<leader>cf', vim.diagnostic.open_float, { desc = 'Show floating warning' })
+vim.keymap.set('n', '<leader>cd', function()
+    local config = vim.diagnostic.config
+    local vt = config().virtual_text
+    config {
+        virtual_text = not vt,
+        underline = not vt,
+        signs = not vt,
+    }
+end, { desc = "toggle diagnostic" })
 
 -- Copy to clipboard
 map("v", [[<leader>y]], [["+y]])
