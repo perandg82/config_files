@@ -30,6 +30,9 @@ vim.keymap.set('n', '<leader>cd', function()
     }
 end, { desc = "toggle diagnostic" })
 
+-- change to _
+map("n", [[c_]], [[ct_]])
+
 -- Copy to clipboard
 map("v", [[<leader>y]], [["+y]])
 map("n", [[<leader>Y]], [["+yg_]])

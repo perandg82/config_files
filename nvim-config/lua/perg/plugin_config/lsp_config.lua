@@ -14,6 +14,7 @@ local servers = {
 local on_attach = function(_, _)
 	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[N]ame' })
 	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
+	vim.keymap.set('n', '<leader>ce', vim.diagnostic.goto_next, { desc = '[C]ode [E]rrors' })
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = '[G]oto [D]efitintion' })
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = '[G]oto [I]mplementation' })
 	vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences' })
