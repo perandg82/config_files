@@ -44,6 +44,7 @@ source /usr/share/doc/fzf/examples/completion.zsh
 EDITOR=nvim
 alias nvim='nvim -p'
 alias vim='nvim'
+alias less='less --raw'
 # Make reboot sudo only
 alias reboot='echo "Your account is not allowed to run the reboot command without sudo"'
 alias shutdown='echo "Your account is not allowed to run the shutdown command without sudo"'

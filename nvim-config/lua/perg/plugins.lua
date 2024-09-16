@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
 	'tpope/vim-rhubarb',
 
 	-- Detect tabstop and shiftwidth automatically
-	'tpope/vim-sleuth',
+	'NMAC427/guess-indent.nvim',
   }
   use {
 	"folke/which-key.nvim",
