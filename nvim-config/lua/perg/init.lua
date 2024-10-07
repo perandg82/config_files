@@ -37,9 +37,9 @@ local autocmds = {
     toggle_search_highlighting = {
         { "InsertEnter", "*", "setlocal nohlsearch" };
     };
-    lua_highlight = {
-        { "TextYankPost", "*", [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]] };
-    };
+    -- lua_highlight = {
+    --     { "TextYankPost", "*", [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=400}]] };
+    -- };
 	--ansi_esc_log = {
 	--{ "BufEnter", "*.log", ":AnsiEsc" };
 	--};
@@ -47,6 +47,16 @@ local autocmds = {
 
 nvim_create_augroups(autocmds)
 -- autocommands END
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Hightlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 400 }
+  end,
+})
+
 require("perg.set")
 require("perg.remap")
 require("perg.lazyplugins")
