@@ -16,7 +16,8 @@ map("n", [[<C-u>]], [[<C-u>zz]])
 map("n", [[n]], [[nzzzv]])
 map("n", [[N]], [[Nzzzv]])
 -- delete to void buffer, paste from buffer
-map("n", [[<leader>dp]], [["_diwP]], { desc = '[D]elete to void, [P]aste from buffer' } )
+map("n", [[<leader>dp]], [["_diwp]], { desc = '[D]elete to void, [P]aste from buffer' } )
+map("n", [[<leader>dP]], [["_diwP]], { desc = '[D]elete to void, [P]aste from buffer' } )
 -- replace word under cursor
 map("n", [[<leader>rw]], [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[R]ename [W]ord under cursor' })
 vim.keymap.set('n', '<leader>cf', vim.diagnostic.open_float, { desc = 'Show floating warning' })

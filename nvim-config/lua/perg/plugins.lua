@@ -70,6 +70,14 @@ return require('packer').startup(function(use)
         require('Comment').setup()
     end
   }
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+      }
+    end
+  }
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
