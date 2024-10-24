@@ -13,11 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
 	'lewis6991/gitsigns.nvim',
-	'wbthomason/packer.nvim',
 	'navarasu/onedark.nvim',
 	'christoomey/vim-tmux-navigator',
 	'nvim-tree/nvim-tree.lua',
 	'nvim-tree/nvim-web-devicons',
+	'https://github.com/ck-zhang/mistake.nvim',
+	'ThePrimeagen/git-worktree.nvim',
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },

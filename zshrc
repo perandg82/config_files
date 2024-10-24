@@ -159,8 +159,12 @@ function zephyr-config-lookup () {
 	grep -inr $config $configfile
 }
 
+function tio () {
+	/usr/bin/tio -l /tmp/picocom-"$1:t".log "$1"
+}
+
 function picocom () {
-	/usr/bin/picocom -b 115200 -g /tmp/picocom-"$1:t".log "$1"
+	echo "You want to use tio"
 }
 
 # function to speed up erase, prog etc of nrf kit
