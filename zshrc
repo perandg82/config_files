@@ -160,7 +160,7 @@ function zephyr-config-lookup () {
 }
 
 function tio () {
-	/usr/bin/tio -l /tmp/picocom-"$1:t".log "$1"
+	/usr/bin/tio -l /tmp/tio-"$1:t".log "$1"
 }
 
 function picocom () {
