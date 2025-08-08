@@ -11,7 +11,7 @@ local servers = {
 	clangd = {},
 }
 
-local on_attach = function(_, _)
+-- local on_attach = function(_, _)
 	vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[N]ame' })
 	vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
 	vim.keymap.set('n', '<leader>ce', vim.diagnostic.goto_next, { desc = '[C]ode [E]rrors' })
@@ -19,7 +19,9 @@ local on_attach = function(_, _)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = '[G]oto [I]mplementation' })
 	vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences' })
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-end
+-- end
+
+vim.lsp.set_log_level("off")
 
 require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(servers),
@@ -33,7 +35,7 @@ require('mason-lspconfig').setup({
         function(server_name)
 			require('lspconfig')[server_name].setup {
 				capabilities = caps,
-				on_attach = on_attach,
+				-- on_attach = on_attach,
 				settings = servers[server_name],
 				filetypes = (servers[server_name] or {}).filetypes,
 			}

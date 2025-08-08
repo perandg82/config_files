@@ -7,7 +7,7 @@ require('gitsigns').setup{
 		changedelete = { text = '~' },
 		untracked = { text = '┃' },
 	},
-	on_attach = function(bufnr)
+	on_attach = function(client, bufnr)
 		local gs = package.loaded.gitsigns
 
 		vim.keymap.set("n", "<leader>hn", function()
