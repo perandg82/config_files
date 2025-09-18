@@ -5,7 +5,8 @@ require('onedark').setup {
 	grey = "#6c7d9c",
     },
     highlights = {
-	MatchParen = {fg = "#ffffff", bg = "#6c7d9c"},
+		CursorLine = {bg = "#304050"},
+		MatchParen = {fg = "#ffffff", bg = "#6c7d9c"},
     },
 }
 require('onedark').load()
