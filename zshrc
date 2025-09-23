@@ -1,8 +1,13 @@
-if [ "$TMUX" = "" ]; then tmux; fi
+#if [ "$TMUX" = "" ]; then tmux; fi
 
-~/bin/config_git_status.sh
+GIT_STATUS_FILE=${HOME}/bin/config_git_status.sh
+if [[ -x $GIT_STATUS_FILE ]]; then
+	$GIT_STATUS_FILE
+else
+	echo "Not executing ${GIT_STATUS_FILE}"
+fi
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/perg/.zshrc'
+zstyle :compinstall filename '${HOME}/.zshrc'
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -49,9 +54,9 @@ alias less='less --raw'
 alias reboot='echo "Your account is not allowed to run the reboot command without sudo"'
 alias shutdown='echo "Your account is not allowed to run the shutdown command without sudo"'
 # End of lines configured by zsh-newuser-install
-export MYSSHCONFIG="/home/perg/.ssh/config"
-export MYZSHRC="/home/perg/.zshrc"
-export MYTMUXCONF="/home/perg/.tmux.conf"
+export MYSSHCONFIG="${HOME}/.ssh/config"
+export MYZSHRC="${HOME}/.zshrc"
+export MYTMUXCONF="${HOME}/.tmux.conf"
 alias ls='ls -lh --color=auto'
 alias tmux='tmux -u'
 # zephyr
@@ -160,7 +165,13 @@ function zephyr-config-lookup () {
 }
 
 function tio () {
-	/usr/bin/tio --log --log-file /tmp/tio-"$1:t".log  --log-append "$1"
+	t=$(which tio)
+	if [[ ! -x ${t} ]]
+	then
+		echo "Tio is not installed!"
+	else
+		${t} --log --log-file /tmp/tio-"$1:t".log  --log-append "$1"
+	fi
 }
 
 function picocom () {
