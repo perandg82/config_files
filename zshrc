@@ -57,8 +57,11 @@ alias shutdown='echo "Your account is not allowed to run the shutdown command wi
 export MYSSHCONFIG="${HOME}/.ssh/config"
 export MYZSHRC="${HOME}/.zshrc"
 export MYTMUXCONF="${HOME}/.tmux.conf"
+export LOCALZSHRC="${HOME}/.localzshrc"
 alias ls='ls -lh --color=auto'
 alias tmux='tmux -u'
+alias ta='tmux attach -t'
+alias tn='tmux new-session -s'
 # zephyr
 #export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
 export ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk
@@ -305,3 +308,4 @@ else
 	export RPROMPT='%F{2}%~'
 fi
 
+[ -f ${LOCALZSHRC} ] && source ${LOCALZSHRC}
