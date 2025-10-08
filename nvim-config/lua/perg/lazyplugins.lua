@@ -97,7 +97,8 @@ local plugins = {
 		-- ignore. Feel free to remove this line after you've gotten Modicator to
 		-- work properly.
 		show_warnings = true,
-		}
+		},
+		{ 'nvim-mini/mini.nvim', version = false },
 	}
 }
 
