@@ -57,6 +57,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+  group = vim.api.nvim_create_augroup("enable_active_cursorline", { clear = true }),
+  callback = function()
+    vim.wo.cursorline = true
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+  group = vim.api.nvim_create_augroup("disable_inactive_cursorline", { clear = true }),
+  callback = function()
+    vim.wo.cursorline = false
+  end,
+})
+
 require("perg.set")
 require("perg.remap")
 require("perg.lazyplugins")

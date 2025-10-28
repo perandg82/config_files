@@ -56,6 +56,7 @@ map("n", [[<F1>]], [[<Esc>]])
 map("i", [[<F1>]], [[<Esc>]])
 vim.keymap.set({"n", "v", "o"}, "ø", "^")
 vim.keymap.set({"n", "v", "o"}, "æ", "$")
+vim.keymap.set({"n", "v", "o"}, "å", "%")
 
 map("n", [[<leader>|]], [[:vsplit<Cr>]])
 map("n", [[<leader>-]], [[:split<Cr>]])
