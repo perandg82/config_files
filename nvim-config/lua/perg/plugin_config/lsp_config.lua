@@ -20,7 +20,7 @@ local servers = {
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 -- end
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")
 
 require("mason-lspconfig").setup({
 	ensure_installed = vim.tbl_keys(servers),
@@ -88,3 +88,38 @@ cmp.setup {
   },
 }
 
+-- Using vim.lsp.config directly
+vim.lsp.config.yamlls = {
+    settings = {
+        yaml = {
+            -- Automatically fetch common schemas from schemastore.org
+            schemaStore = {
+                enable = true,
+            },
+
+            -- Schemas for specific file types (crucial for Azure Pipelines)
+            schemas = {
+                -- Azure Pipelines Schema
+                ["https://json.schemastore.org/azure-pipelines.json"] = "azure-pipelines.yml",
+
+                -- Kubernetes Schema (common example)
+                ["kubernetes"] = "*k8s*.yaml",
+            },
+
+            -- Formatting options (optional)
+            format = {
+                enable = true,
+                useTabs = false,
+                tabSize = 2,
+            },
+        },
+    },
+    -- NOTE: 'on_attach' and 'capabilities' are still valid options
+    -- in this table and should be defined elsewhere in your config.
+    -- on_attach = function(client, bufnr) ... end,
+    -- capabilities = require('cmp_nvim_lsp').default_capabilities(),
+}
+
+-- To enable the configuration for the relevant filetypes (yaml, yml),
+-- you must now explicitly call vim.lsp.enable:
+vim.lsp.enable('yamlls')
