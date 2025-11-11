@@ -297,7 +297,7 @@ zstyle ':vcs_info:*' enable git
 }
 +vi-git-submodule-check() {
 	if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-	   git submodule status --recursive | grep '^-' &> /dev/null; then
+	   git submodule status --recursive | grep '^[-+]' &> /dev/null; then
 		# Add a visual warning (e.g., a lightning bolt or 'S!') in a distinct color
 		hook_com[misc]+='%F{3}S%f'
 	fi
